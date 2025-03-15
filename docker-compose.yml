@@ -3,10 +3,8 @@ services:
     image: bitnami/postgresql
     ports:
       - "5432:5432"
-    environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=connect
+    env_file:
+      - .env
     volumes:
       - pg-data:/bitnami/postgresql
     
