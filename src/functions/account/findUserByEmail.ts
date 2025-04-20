@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
 import { db } from '../../database/client';
-import { users } from '../../database/schemas/';
+import { users } from '../../database/schemas';
 
 interface createUserProps {
   name: string;

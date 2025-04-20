@@ -7,5 +7,5 @@ export const users = pgTable('users', {
   password: text('password').notNull(),
   created_at: timestamp('created_at').notNull().defaultNow(),
   updated_at: timestamp('updated_at').notNull().defaultNow(),
-  last_login: timestamp('updated_at').notNull().defaultNow(),
+  last_login: timestamp('last_login').notNull().defaultNow(),
 });
