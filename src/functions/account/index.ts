@@ -1,1 +1,3 @@
-export * from './create-user';
+export * from './createUser';
+export * from './findUserByEmail';
+export * from './updateUserLastLogin';
