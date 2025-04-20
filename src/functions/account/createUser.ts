@@ -2,24 +2,29 @@ import { eq } from 'drizzle-orm';
 import { db } from '../../database/client';
 import { users } from '../../database/schemas';
 
-interface findUserByEmailProps {
+interface createUserProps {
+  name: string;
   email: string;
+  password: string;
 }
 
-interface userInterface {
-  id: string,
-  name: string,
-  email: string,
-  password: string,
-  created_at: Date,
-  updated_at: Date,
-  last_login: Date,
-}
-
-export async function findUserByEmail({
+export async function createUser({
+  name,
   email,
-}: findUserByEmailProps): Promise<userInterface | undefined> {
-  const user = await db.select().from(users).where(eq(users.email, email));
+  password,
+}: createUserProps): Promise<void> {
+  const existingUser = await db
+    .select()
+    .from(users)
+    .where(eq(users.email, email));
 
-  return user[0];
+  if (existingUser.length > 0) {
+    throw new Error('Email already exits');
+  }
+
+  await db.insert(users).values({
+    name,
+    email,
+    password,
+  });
 }
