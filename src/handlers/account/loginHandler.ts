@@ -1,5 +1,5 @@
 import type { FastifyReply, FastifyRequest } from 'fastify';
-import type { SignupBody } from '../../docs';
+import type { LoginBody } from '../../docs';
 import {
   comparePassword,
   findUserByEmail,
@@ -7,7 +7,7 @@ import {
 } from '../../functions';
 
 export const loginHandler = async (
-  request: FastifyRequest<{ Body: SignupBody }>,
+  request: FastifyRequest<{ Body: LoginBody }>,
   reply: FastifyReply
 ) => {
   try {
